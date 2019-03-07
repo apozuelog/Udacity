@@ -1,0 +1,1077 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Conflicts\_and\_childhood\_diseases}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{project-2---investigate-a-dataset}{%
+\section{Project 2 - Investigate a
+Dataset}\label{project-2---investigate-a-dataset}}
+
+\hypertarget{conflicts.-no-schooling-and-its-relationship-with-deadly-diseases-in-childhood.}{%
+\section{Conflicts. No schooling and its relationship with deadly
+diseases in
+childhood.}\label{conflicts.-no-schooling-and-its-relationship-with-deadly-diseases-in-childhood.}}
+
+    \hypertarget{table-of-contents}{%
+\subsection{Table of Contents}\label{table-of-contents}}
+
+Introduction
+
+Data Wrangling
+
+Conclusions
+
+     \#\# Introduction \textgreater{} The purpose of this project is to try
+to discover childhood diseases that cause deaths in places where there
+is a lack of schooling due to military conflicts. In other words; how
+armed conflicts affect non-schooling and if there is a pattern in the
+diseases that derive from them.
+
+\begin{quote}
+I have divided this analysis into four main blocks or data set: * Deaths
+due to conflicts. * Lack of children's schooling. * Main childhood
+diseases. * Deaths from these diseases.
+\end{quote}
+
+\begin{quote}
+Later I will try to answer the following questions. \#\#\# Questions:
+
+1. The 10 countries with the highest average of conflicts?
+
+2. How many children are not schooled because of conflicts?
+
+3. What diseases are due to the lack of schooling?
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} Import necesary libraries:}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+     \#\# Data Wrangling
+
+\hypertarget{general-properties}{%
+\subsubsection{General Properties}\label{general-properties}}
+
+\hypertarget{loading-and-cleaning-data.}{%
+\paragraph{Loading and cleaning
+data.}\label{loading-and-cleaning-data.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Cargue sus datos e imprima unas pocas líneas. Realizar operaciones de inspección de datos.}
+        \PY{c+c1}{\PYZsh{} tipos y busque instancias de datos faltantes o posiblemente errantes.}
+        
+        \PY{c+c1}{\PYZsh{} load and clean num dead in conflicts. Global.}
+        \PY{n}{df\PYZus{}cfl} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CONFLICTOS\PYZus{}num\PYZus{}de\PYZus{}muertes.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}cfl} \PY{o}{=} \PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Country Code}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{df\PYZus{}cfl} \PY{o}{=} \PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} df\PYZus{}cfl.fillna(value=0, inplace=True)}
+        
+        \PY{c+c1}{\PYZsh{} niños sin escolarizar primaria}
+        \PY{n}{df\PYZus{}esc} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ESCOLARIZACION\PYZus{}tasa\PYZus{}alfabetizacion\PYZus{}jovenes.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}esc}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} df\PYZus{}esc.fillna(value=0, inplace=True)}
+        
+        \PY{c+c1}{\PYZsh{} Muertes por enfermedad}
+        \PY{n}{df\PYZus{}M\PYZus{}dia} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}diarrhoeal\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        \PY{n}{df\PYZus{}M\PYZus{}dia}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}dia}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}dia}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} hiv}
+        \PY{n}{df\PYZus{}M\PYZus{}hiv} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}hiv\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} malaria}
+        \PY{n}{df\PYZus{}M\PYZus{}mal} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}malaria\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} 
+        \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} measles}
+        \PY{n}{df\PYZus{}M\PYZus{}mea} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}measles\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} meningitis}
+        \PY{n}{df\PYZus{}M\PYZus{}men} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}meningitis\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}men}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}men}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}men}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} ncd}
+        \PY{n}{df\PYZus{}M\PYZus{}ncd} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}ncd\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}ncd}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}ncd}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}ncd}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} other\PYZus{}infections}
+        \PY{n}{df\PYZus{}M\PYZus{}oth} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}other\PYZus{}infections\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}oth}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}oth}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}oth}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} pertussis}
+        \PY{n}{df\PYZus{}M\PYZus{}per} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}pertussis\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}per}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}per}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}per}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} pneumonia}
+        \PY{n}{df\PYZus{}M\PYZus{}neu} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}pneumonia\PYZus{}deaths\PYZus{}in\PYZus{}children\PYZus{}1\PYZus{}59\PYZus{}months\PYZus{}total\PYZus{}deaths.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}neu}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}neu}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}neu}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Muertes por enfermedades en niños}
+        \PY{n}{df\PYZus{}M\PYZus{}rate} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}provabilidad\PYZus{}de\PYZus{}muerte\PYZus{}ninos\PYZus{}5\PYZus{}14\PYZus{}x\PYZus{}1000.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}rate}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}rate}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}rate}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{n}{df\PYZus{}M\PYZus{}boy} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}ninos\PYZus{}0\PYZus{}5\PYZus{}por\PYZus{}1000\PYZus{}nacimientos.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}boy}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}boy}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}boy}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{n}{df\PYZus{}M\PYZus{}child} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M\PYZus{}child\PYZus{}mortality\PYZus{}0\PYZus{}5\PYZus{}x\PYZus{}1000\PYZus{}born.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}child}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}child}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}M\PYZus{}child}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{value}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{refinement}{%
+\paragraph{Refinement}\label{refinement}}
+
+We just want to stay with 3 columns: country, year and value.
+
+\hypertarget{conflicts.}{%
+\subsubsection{CONFLICTS.}\label{conflicts.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} The \PYZsq{}Country Name\PYZsq{} column we rename}
+        \PY{n}{df\PYZus{}cfl}\PY{o}{=}\PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Country Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}        country    1989    1990    1991    1992    1993    1994    1995  \textbackslash{}
+        0        Aruba     NaN     NaN     NaN     NaN     NaN     NaN     NaN   
+        1  Afghanistan  5174.0  1478.0  3302.0  4276.0  4071.0  8937.0  5499.0   
+        
+             1996    1997   {\ldots}       2008    2009    2010    2011    2012    2013  \textbackslash{}
+        0     NaN     NaN   {\ldots}        NaN     NaN     NaN     NaN     NaN     NaN   
+        1  3177.0  6396.0   {\ldots}     5552.0  6341.0  6864.0  7405.0  7719.0  8056.0   
+        
+              2014     2015     2016     2017  
+        0      NaN      NaN      NaN      NaN  
+        1  12285.0  17273.0  17981.0  18950.0  
+        
+        [2 rows x 30 columns]
+\end{Verbatim}
+            
+    \hypertarget{unpivot.}{%
+\paragraph{UNPIVOT.}\label{unpivot.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Unpivot the dS, rename columns, change the data type and clear more deads in conflicts}
+        \PY{n}{df\PYZus{}cfl}\PY{o}{=}\PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}cfl}\PY{o}{=}\PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{level\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}cfl}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{df\PYZus{}cfl}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+        \PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:}        country  year  dead
+        0  Afghanistan  1989  5174
+        1  Afghanistan  1990  1478
+\end{Verbatim}
+            
+    CHILDREN WITHOUT SCHOOLING.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{df\PYZus{}esc}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:}        country 1975 1976 1977 1978  1979 1980 1981 1982 1983  {\ldots}  2002 2003  \textbackslash{}
+        0  Afghanistan  NaN  NaN  NaN  NaN  30,1  NaN  NaN  NaN  NaN  {\ldots}   NaN  NaN   
+        1      Albania  NaN  NaN  NaN  NaN   NaN  NaN  NaN  NaN  NaN  {\ldots}   NaN  NaN   
+        
+          2004 2005 2006 2007  2008 2009 2010  2011  
+        0  NaN  NaN  NaN  NaN   NaN  NaN  NaN   NaN  
+        1  NaN  NaN  NaN  NaN  98,8  NaN  NaN  98,8  
+        
+        [2 rows x 38 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Unpivot the dS, rename columns, change the data type and clear more deads in conflicts}
+        \PY{n}{df\PYZus{}esc}\PY{o}{=}\PY{n}{df\PYZus{}esc}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+        \PY{n}{df\PYZus{}esc}\PY{o}{=}\PY{n}{df\PYZus{}esc}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{level\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} df\PYZus{}esc[[\PYZsq{}dead\PYZsq{}]]=df\PYZus{}esc[[\PYZsq{}dead\PYZsq{}]].astype(int)}
+        \PY{n}{df\PYZus{}esc}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} This df\PYZus{}esc now is OK. CHILDREN WITHOUT SCHOOL}
+        \PY{n}{df\PYZus{}esc}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:}        country  year  dead
+        0  Afghanistan  1979  30,1
+        1      Albania  2001  99,4
+\end{Verbatim}
+            
+    \hypertarget{merge-join-conflicts-with-eschooling}{%
+\subsection{merge join conflicts with
+eschooling}\label{merge-join-conflicts-with-eschooling}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}cfl}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}esc}\PY{p}{,} \PY{n}{left\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{right\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inner}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead\PYZus{}x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead\PYZus{}cfl}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead\PYZus{}y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{no\PYZus{}school}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}    country  year  dead\_cfl no\_school
+         0   Angola  2001      1123      72,2
+         1  Burundi  2000      1348      73,3
+\end{Verbatim}
+            
+    \hypertarget{childhood-illnesses}{%
+\paragraph{CHILDHOOD ILLNESSES}\label{childhood-illnesses}}
+
+DEATHS FOR DIARRHEA
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{df\PYZus{}M\PYZus{}dia}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:}        country   2008
+         0  Afghanistan  88200
+         1      Albania     12
+\end{Verbatim}
+            
+    Exclude deaths due to diarrhea due to lack of data. Only to seem in the
+2008 source
+
+    DEATHS FOR HIV
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:}        country    1990    1991    1992   1993    1994    1995   1996    1997  \textbackslash{}
+         0  Afghanistan  1.2400  1.3800  1.5300  1.690  1.8700  2.0600  2.260  2.4600   
+         1      Albania  0.0691  0.0749  0.0802  0.065  0.0518  0.0477  0.042  0.0356   
+         
+              1998    {\ldots}       2007    2008    2009    2010     2011   2012     2013  \textbackslash{}
+         0  2.6500    {\ldots}     5.1200  5.5600  5.9100  6.2600  6.69000  7.410  8.22000   
+         1  0.0334    {\ldots}     0.0244  0.0197  0.0157  0.0112  0.00873  0.008  0.00784   
+         
+               2014      2015      2016  
+         0  9.21000  10.60000  10.80000  
+         1  0.00793   0.00807   0.00822  
+         
+         [2 rows x 28 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+c1}{\PYZsh{} Unpivot the df, rename columns, change the data type and clear more }
+         \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{level\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} df\PYZus{}M\PYZus{}hiv[[\PYZsq{}dead\PYZsq{}]]=df\PYZus{}M\PYZus{}hiv[[\PYZsq{}dead\PYZsq{}]].astype(int)}
+         \PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}M\PYZus{}hiv}\PY{p}{,} \PY{n}{left\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{right\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inner}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hiv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}    country  year  dead\_cfl no\_school    hiv
+         0   Angola  2001      1123      72,2  887.0
+         1  Burundi  2000      1348      73,3  998.0
+\end{Verbatim}
+            
+    DEATHS FOR MALARIA
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:}        country   1990   1991   1992   1993   1994   1995   1996   1997   1998  \textbackslash{}
+         0  Afghanistan  185.0  192.0  197.0  207.0  226.0  236.0  251.0  258.0  273.0   
+         1      Albania    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0   
+         
+            {\ldots}     2007   2008   2009   2010   2011   2012   2013   2014   2015   2016  
+         0  {\ldots}    441.0  414.0  384.0  272.0  218.0  209.0  337.0  372.0  394.0  410.0  
+         1  {\ldots}      0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0  
+         
+         [2 rows x 28 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Unpivot the df, rename columns, change the data type and clear more }
+         \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{level\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mal}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}mal}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}        country  year  dead
+         0  Afghanistan  1990   185
+         1  Afghanistan  1991   192
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}M\PYZus{}mal}\PY{p}{,} \PY{n}{left\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{right\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inner}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{malaria}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:}    country  year  dead\_cfl no\_school    hiv  malaria
+         0   Angola  2001      1123      72,2  887.0     5650
+         1  Burundi  2000      1348      73,3  998.0    11900
+\end{Verbatim}
+            
+    DEATHS FOR MEASLES
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:}        country     1990        1991        1992        1993        1994  \textbackslash{}
+         0  Afghanistan  18900.0  18500.0000  18500.0000  18700.0000  19200.0000   
+         1      Albania    333.0      0.0239      0.0378      0.0192      0.0757   
+         
+                  1995      1996      1997      1998   {\ldots}          2007       2008  \textbackslash{}
+         0  18800.0000  19600.00  19700.00  20300.00   {\ldots}     3840.0000  5770.0000   
+         1      0.0347      2.68      5.03      3.77   {\ldots}        0.0268     0.0248   
+         
+                  2009        2010        2011         2012       2013        2014  \textbackslash{}
+         0  7510.00000  18600.0000  22500.0000  21500.00000  6980.0000  3080.00000   
+         1     0.00117      0.0104      0.0266      0.00831     0.0006     0.00233   
+         
+                2015     2016  
+         0  1730.000  556.000  
+         1     0.167    0.166  
+         
+         [2 rows x 28 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Unpivot the df, rename columns, change the data type and clear more }
+         \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{level\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} df\PYZus{}M\PYZus{}mea[[\PYZsq{}dead\PYZsq{}]]=df\PYZus{}esc[[\PYZsq{}dead\PYZsq{}]].astype(int)}
+         \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}M\PYZus{}mea}\PY{p}{,} \PY{n}{left\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{right\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inner}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{measles}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}    country  year  dead\_cfl no\_school    hiv  malaria  measles
+         0   Angola  2001      1123      72,2  887.0     5650   7930.0
+         1  Burundi  2000      1348      73,3  998.0    11900   2440.0
+\end{Verbatim}
+            
+    MUERTES POR MENINGITIS
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:}        country  year     dead
+         0  Afghanistan  1990  18900.0
+         1  Afghanistan  1991  18500.0
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} Unpivot the df, rename columns, change the data type and clear more }
+         \PY{n}{df\PYZus{}M\PYZus{}men}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}men}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}mea}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{level\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}men}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{n}{df\PYZus{}M\PYZus{}men}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+         \PY{n}{df\PYZus{}M\PYZus{}men}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}M\PYZus{}mea}\PY{p}{,} \PY{n}{left\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{right\PYZus{}on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inner}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dead}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{meningitis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:}    country  year  dead\_cfl no\_school    hiv  malaria  measles  meningitis
+         0   Angola  2001      1123      72,2  887.0     5650   7930.0      7930.0
+         1  Burundi  2000      1348      73,3  998.0    11900   2440.0      2440.0
+\end{Verbatim}
+            
+    MUERTES POR OTHERS INFECTIONS
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{df\PYZus{}M\PYZus{}oth}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}        country   2008
+         0  Afghanistan  48800
+         1      Albania     99
+\end{Verbatim}
+            
+    Exclude deaths due to others infections due to lack of data. Only to
+seem in the 2008 source
+
+    MUERTES POR PERTUSSIS
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n}{df\PYZus{}M\PYZus{}per}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}25}]:}        country  2008
+         0  Afghanistan  1090
+         1      Albania     0
+\end{Verbatim}
+            
+    Exclude deaths due to others infections due to lack of data. Only to
+seem in the 2008 source
+
+    MUERTES POR NEUMONÍA
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{df\PYZus{}M\PYZus{}neu}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:}        country   2008
+         0  Afghanistan  72700
+         1      Albania    106
+\end{Verbatim}
+            
+    Exclude deaths due to others infections due to lack of data. Only to
+seem in the 2008 source
+
+    \hypertarget{data-types-are-changed-to-numeric}{%
+\paragraph{Data types are changed to
+numeric}\label{data-types-are-changed-to-numeric}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{df\PYZus{}combined} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{int}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{no\PYZus{}school} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}numeric}\PY{p}{(}\PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{no\PYZus{}school}\PY{p}{,} \PY{n}{errors}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coerce}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{dtypes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} country        object
+         year            int32
+         dead\_cfl        int32
+         no\_school     float64
+         hiv           float64
+         malaria         int32
+         measles       float64
+         meningitis    float64
+         dtype: object
+\end{Verbatim}
+            
+    \hypertarget{answering-questions}{%
+\subsection{ANSWERING QUESTIONS}\label{answering-questions}}
+
+     \#\#\# 1. The 10 countries with the highest average of conflicts?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{df\PYZus{}dead\PYZus{}cfl} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{dead\PYZus{}cfl}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}dead\PYZus{}cfl} \PY{o}{=} \PY{n}{df\PYZus{}dead\PYZus{}cfl}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{df\PYZus{}dead\PYZus{}cfl}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} country
+         Sri Lanka      3792.000000
+         Pakistan       2732.500000
+         Sudan          2122.500000
+         Libya          1930.000000
+         India          1891.666667
+         Angola         1123.000000
+         Philippines    1102.500000
+         Burundi         774.500000
+         Colombia        603.000000
+         Uganda          592.333333
+         Name: dead\_cfl, dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{axs}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{df\PYZus{}dead\PYZus{}cfl}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{df\PYZus{}dead\PYZus{}cfl}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:} <BarContainer object of 10 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+     \#\#\# 2. How many children are not schooled because of conflicts?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{df\PYZus{}no\PYZus{}school} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{no\PYZus{}school}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}no\PYZus{}school} \PY{o}{=} \PY{n}{df\PYZus{}no\PYZus{}school}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{True}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{df\PYZus{}no\PYZus{}school}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}45}]:} country
+         Ethiopia      55.0
+         Mauritania    69.0
+         Nepal         70.0
+         Guatemala     76.0
+         Malta         96.0
+         Colombia      97.8
+         Sri Lanka     98.0
+         Thailand      98.0
+         Algeria        NaN
+         Angola         NaN
+         Name: no\_school, dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{axs}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{df\PYZus{}no\PYZus{}school}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{df\PYZus{}no\PYZus{}school}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} <BarContainer object of 10 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_54_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We see how Ethiopia has the lowest enrollment rate and Guatemala in
+America.
+
+     \#\#\# 3. What diseases are due to the lack of schooling?
+
+    \hypertarget{hiv}{%
+\subsubsection{HIV}\label{hiv}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} \PY{n}{df\PYZus{}hiv} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{hiv}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}hiv} \PY{o}{=} \PY{n}{df\PYZus{}hiv}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{df\PYZus{}hiv}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}48}]:} country
+         Uganda              8536.666667
+         Kenya               7330.000000
+         Ethiopia            5747.500000
+         India               4875.666667
+         Congo, Dem. Rep.    4210.000000
+         Cote d'Ivoire       1500.000000
+         Rwanda               952.000000
+         Chad                 928.333333
+         Angola               887.000000
+         Burundi              860.000000
+         Name: hiv, dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{axs}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{df\PYZus{}hiv}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{df\PYZus{}hiv}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}50}]:} <BarContainer object of 10 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_59_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{malaria}{%
+\subsubsection{MALARIA}\label{malaria}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{n}{df\PYZus{}malaria} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{malaria}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}malaria} \PY{o}{=} \PY{n}{df\PYZus{}malaria}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{df\PYZus{}malaria}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}51}]:} country
+         Congo, Dem. Rep.    89200.000000
+         Uganda              47266.666667
+         India               37633.333333
+         Cote d'Ivoire       22000.000000
+         Mali                20000.000000
+         Ethiopia             9350.000000
+         Burundi              9040.000000
+         Rwanda               6590.000000
+         Angola               5650.000000
+         Kenya                5460.000000
+         Name: malaria, dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{axs}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{df\PYZus{}malaria}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{df\PYZus{}malaria}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}52}]:} <BarContainer object of 10 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_62_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{measles}{%
+\subsubsection{MEASLES}\label{measles}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{n}{df\PYZus{}measles} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{measles}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}measles} \PY{o}{=} \PY{n}{df\PYZus{}measles}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{df\PYZus{}measles}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}53}]:} country
+         India               148566.666667
+         Ethiopia             31550.000000
+         Indonesia            20350.000000
+         Bangladesh           15200.000000
+         Pakistan             14547.500000
+         Angola                7930.000000
+         Chad                  6410.000000
+         Congo, Dem. Rep.      5300.000000
+         Rwanda                4760.000000
+         Sudan                 3785.000000
+         Name: measles, dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{axs}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{df\PYZus{}measles}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{df\PYZus{}measles}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}54}]:} <BarContainer object of 10 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_65_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{meningitis}{%
+\subsubsection{MENINGITIS}\label{meningitis}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{df\PYZus{}meningitis} \PY{o}{=} \PY{n}{df\PYZus{}combined}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{country}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{meningitis}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{df\PYZus{}meningitis} \PY{o}{=} \PY{n}{df\PYZus{}meningitis}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{p}{[}\PY{k+kc}{False}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{df\PYZus{}meningitis}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}55}]:} country
+         India               148566.666667
+         Ethiopia             31550.000000
+         Indonesia            20350.000000
+         Bangladesh           15200.000000
+         Pakistan             14547.500000
+         Angola                7930.000000
+         Chad                  6410.000000
+         Congo, Dem. Rep.      5300.000000
+         Rwanda                4760.000000
+         Sudan                 3785.000000
+         Name: meningitis, dtype: float64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{axs} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{sharey}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{axs}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{df\PYZus{}meningitis}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{df\PYZus{}meningitis}\PY{o}{.}\PY{n}{values}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}56}]:} <BarContainer object of 10 artists>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_68_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We confirm that in those countries where there have been conflicts, the
+schooling rate is lower and certain diseases cause child deaths. Sobre
+todo en países del llamado Cuerno de África. \#\#\#\# ``The Horn of
+Africa is a region continuously in crisis. Ethiopia occupies a
+predominant position in the Horn due to its demographic importance:
+about 85\% of the population of that area lives there. However, the
+history of Ethiopia is to a large extent marked by conflicts between
+ethnic groups living from resources and space, as well as between
+nationalism and Marxism-Leninism in modern times. The rest of the region
+also faces ongoing wars: a civil war erupted in Somalia in 1986, so the
+country has not had any national government in operation since 1991.''
+https://es.wikipedia.org/wiki/Conflictos\_en\_el\_Cuerno\_de\_\%C3\%81frica
+
+     \#\# Conclusions
+
+\begin{quote}
+It is found that conflicts cause lack of schooling and in turn, this
+causes certain diseases in childhood with cause of death. We must be
+aware of the importance of children growing up in peace and receiving
+minimal schooling so that they grow up healthy and educate their
+children also in peace.
+\end{quote}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
